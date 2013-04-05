@@ -4,14 +4,14 @@ class Dart < Formula
   homepage 'http://www.dartlang.org/'
 
   if MacOS.prefer_64_bit?
-    url 'https://gsdview.appspot.com/dart-editor-archive-integration/15699/dartsdk-macos-64.zip'
-    sha1 '7ecee694bf6d454bdce73ab55ce83799447d701e'
+    url 'https://gsdview.appspot.com/dart-editor-archive-integration/20602/dartsdk-macos-64.zip'
+    sha1 'd5ba351fe5f60f0e2eb9da589a4f2f902cfc9b68'
   else
-    url 'https://gsdview.appspot.com/dart-editor-archive-integration/15699/dartsdk-macos-32.zip'
-    sha1 '1606706fe74ecc095ef0e25de12a92bbf07c063a'
+    url 'https://gsdview.appspot.com/dart-editor-archive-integration/20602/dartsdk-macos-32.zip'
+    sha1 '703b2fb61a7df03e898eb1fb332b3d004b7b9a34'
   end
 
-  version '15699'
+  version '20602'
 
   def install
     libexec.install Dir['*']
@@ -19,18 +19,16 @@ class Dart < Formula
     bin.write_exec_script Dir["#{libexec}/bin/{pub,dart?*}"]
   end
 
-  def test
-    mktemp do
-      (Pathname.pwd+'sample.dart').write <<-EOS.undent
+  test do
+    (testpath/'sample.dart').write <<-EOS.undent
       void main() {
         Options opts = new Options();
         for (String arg in opts.arguments) {
           print(arg);
         }
       }
-      EOS
+    EOS
 
-      `#{bin}/dart sample.dart test message` == "test\nmessage\n"
-    end
+    `#{bin}/dart sample.dart test message` == "test\nmessage\n"
   end
 end
