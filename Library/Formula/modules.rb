@@ -6,7 +6,7 @@ class Modules < Formula
   version '0.1.0'
 
   def install
-    system "xbuild /p:Configuration=Release modules.sln"
+    system "/Applications/Unity\\ 4.0/MonoDevelop.app/Contents/Frameworks/Mono.framework/Commands/xbuild /p:Configuration=Release modules.sln"
     prefix.install "modules.exe"
   end
 end
